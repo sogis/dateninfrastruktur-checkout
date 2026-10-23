@@ -8,7 +8,8 @@ GITHUB_BASE_URL="https://github.com/sogis"
 REPOSITORIES=(
   dateninfrastruktur-datenwerkstatt
   dateninfrastruktur-diagramm
-  dateninfrastruktur-agentic-bi-demo
+  dateninfrastruktur-agentic-bi-demo-001
+  dateninfrastruktur-agentic-bi-demo-002
 )
 
 usage() {
