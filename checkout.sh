@@ -6,6 +6,9 @@ set -o pipefail
 # Neue Repositories hier ergänzen; dateninfrastruktur-checkout bleibt ausgeschlossen.
 GITHUB_BASE_URL="https://github.com/sogis"
 REPOSITORIES=(
+  dateninfrastruktur-dev-stack
+  dateninfrastruktur-sodata
+  dateninfrastruktur-dateninfrastruktur-jenkins-gretl-plugin
   dateninfrastruktur-datenwerkstatt
   dateninfrastruktur-diagramm
   dateninfrastruktur-agentic-bi-demo-001
