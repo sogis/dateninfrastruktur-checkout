@@ -8,7 +8,7 @@ GITHUB_BASE_URL="https://github.com/sogis"
 REPOSITORIES=(
   dateninfrastruktur-dev-stack
   dateninfrastruktur-sodata
-  dateninfrastruktur-dateninfrastruktur-jenkins-gretl-plugin
+  dateninfrastruktur-jenkins-gretl-plugin
   dateninfrastruktur-jenkins-dev
   dateninfrastruktur-datenwerkstatt
   dateninfrastruktur-themenrepo
