@@ -9,7 +9,9 @@ REPOSITORIES=(
   dateninfrastruktur-dev-stack
   dateninfrastruktur-sodata
   dateninfrastruktur-dateninfrastruktur-jenkins-gretl-plugin
+  dateninfrastruktur-jenkins-dev
   dateninfrastruktur-datenwerkstatt
+  dateninfrastruktur-themenrepo
   dateninfrastruktur-diagramm
   dateninfrastruktur-agentic-bi-demo-001
   dateninfrastruktur-agentic-bi-demo-002
