@@ -4,9 +4,6 @@
 Repositories im angegebenen Zielverzeichnis. Die Repository-Liste ist im Script
 hardcodiert; `dateninfrastruktur-checkout` selbst ist nicht enthalten.
 
-Die Liste enthält zunächst `dateninfrastruktur-datenwerkstatt` und
-`dateninfrastruktur-diagramm`.
-
 ## Voraussetzungen und Aufruf
 
 Bash ab Version 3.2 und Git müssen installiert sein. Das Script funktioniert unter
