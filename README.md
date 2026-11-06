@@ -2,8 +2,8 @@
 
 Der Workspace verwaltet eigenständige Git-Repositories. `repositories.json`
 bindet Pfade, tatsächliche Remotes, Defaultbranches und Verantwortlichkeiten.
-Der bestehende Checkout-Remote bleibt bis zur Remote-Aktivierung die reale
-Identität. Das lokale Architekturrepo hat bis zu seiner Einrichtung kein Remote.
+Der Workspace liegt in `sogis/dateninfrastruktur-workspace`. Das
+Architekturrepo ist ein eigenes GitHub-Repository.
 
 Python 3.12+, Git und für unabhängige Reviews OpenCode 2.x verwenden.
 

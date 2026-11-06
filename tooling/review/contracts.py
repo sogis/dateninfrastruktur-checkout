@@ -31,7 +31,16 @@ def load_task(root, phase):
             'Versionskonflikt im Auftrag')
     request_path = within(root,f'.work/requests/{phase}.json')
     request = read_json(request_path)
-    required = plan['phases'][phase]
+    if phase in plan['phases']:
+        required = plan['phases'][phase]
+    else:
+        conditional = plan.get('conditional_phases', {}).get(phase)
+        require(conditional and conditional['requires'] == 'explicit_remote_authorization'
+                and request.get('explicit_remote_authorization') is True
+                and isinstance(request.get('authorization_reference'), str)
+                and request['authorization_reference'].strip(),
+                'Unbekannte Phase oder explizite Remote-Freigabe fehlt')
+        required = conditional['checks']
     require(required and len(required)==len(set(required)) and
             all(PHASE.fullmatch(i) for i in required),'Ungültige Vertragscheckliste')
     require(request['schema_version']==1 and request['phase']==phase and

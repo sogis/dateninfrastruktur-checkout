@@ -3,7 +3,7 @@
   "workspace": {
     "id": "workspace",
     "name": "dateninfrastruktur-workspace",
-    "remote": "https://github.com/sogis/dateninfrastruktur-checkout.git",
+    "remote": "https://github.com/sogis/dateninfrastruktur-workspace.git",
     "branch": "main"
   },
   "repositories": [
@@ -58,7 +58,7 @@
     {
       "id": "architecture",
       "path": "dateninfrastruktur-architektur",
-      "remote": null,
+      "remote": "https://github.com/sogis/dateninfrastruktur-architektur.git",
       "branch": "main",
       "profile": "core",
       "responsibility": "Technische Ist-Architektur und deren Prüfung"
