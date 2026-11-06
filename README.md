@@ -1,63 +1,38 @@
-# Dateninfrastruktur Checkout
+# Dateninfrastruktur Workspace
 
-`checkout.sh` klont fehlende Dateninfrastruktur-Repositories und aktualisiert vorhandene
-Repositories im angegebenen Zielverzeichnis. Die Repository-Liste ist im Script
-hardcodiert; `dateninfrastruktur-checkout` selbst ist nicht enthalten.
+Der Workspace verwaltet eigenständige Git-Repositories. `repositories.json`
+bindet Pfade, tatsächliche Remotes, Defaultbranches und Verantwortlichkeiten.
+Der bestehende Checkout-Remote bleibt bis zur Remote-Aktivierung die reale
+Identität. Das lokale Architekturrepo hat bis zu seiner Einrichtung kein Remote.
 
-## Voraussetzungen und Aufruf
+Python 3.12+, Git und für unabhängige Reviews OpenCode 2.x verwenden.
 
-Bash ab Version 3.2 und Git müssen installiert sein. Das Script funktioniert unter
-macOS und Linux. Zum Klonen wird HTTPS verwendet; der Zugriff auf GitHub muss
-möglich sein. Für vorhandene Repositories gelten deren konfigurierte Remotes und
-Git-Zugangsdaten.
-
-```bash
-./checkout.sh
-./checkout.sh /pfad/zu/dateninfrastruktur
-./checkout.sh "../dateninfrastruktur repos"
-./checkout.sh --help
+```sh
+./workspace status --profile core
+./workspace bootstrap --profile core
+./workspace sync --repo admin --repo sodata
+./workspace verify
+./workspace snapshot --profile core --output .runtime/candidates/source-set.json
+./workspace review --task "$TASK_ROOT" --phase "$PHASE"
 ```
 
-Ohne Argument wird das Elternverzeichnis des Scripts verwendet, unabhängig vom
-aktuellen Arbeitsverzeichnis. Damit liegen die Repositories standardmässig neben
-`dateninfrastruktur-checkout`.
+`core` umfasst sechs Produkte und Architektur. `extended` wählt die
+zusätzlichen Projekte. `status` liest den Stand. `bootstrap` klont fehlende
+Repos mit konfiguriertem Remote. `sync` aktualisiert die explizit gewählten
+Repos per Fast-forward auf ihrem sauberen Defaultbranch. Vorhandene lokale
+Arbeit bleibt erhalten. `verify` prüft Gitgrenzen und Root-Index.
+`snapshot` und `review` binden ausschliesslich Commitstände. Mit
+`--exclude-untracked` können vorhandene unversionierte Dateien bewusst
+ausgeschlossen werden. Andere lokale Änderungen blockieren die Aufnahme.
 
-Ein angegebenes Zielverzeichnis hat Vorrang und wird bei Bedarf erstellt.
-Explizite relative Pfade beziehen sich auf das aktuelle Arbeitsverzeichnis.
-Pfade mit Leerzeichen müssen in Anführungszeichen stehen. Jedes Repository liegt
-direkt unter dem Zielverzeichnis, beispielsweise
-`/pfad/zu/dateninfrastruktur/dateninfrastruktur-datenwerkstatt`.
+Exitcodes sind 0 für Erfolg, 1 für Prüf- oder Bearbeitungsfehler und 2 für
+ungültige CLI-Argumente. Externe Reviewblocker erscheinen als
+`NICHT_PRUEFBAR` mit Ursache.
 
-## Repositories nachführen
-
-Am Anfang von `checkout.sh` steht das Array `REPOSITORIES`. Dort pro Zeile einen
-Repository-Namen ergänzen oder entfernen. `GITHUB_BASE_URL` legt die gemeinsame
-GitHub-Basisadresse fest, standardmässig `https://github.com/sogis`.
-
-Die Clone-URL wird als `<GITHUB_BASE_URL>/<repository-name>.git` gebildet. Das
-Script sucht beim Ausführen keine zusätzlichen Repositories auf GitHub.
-
-## Verhalten beim Aktualisieren
-
-- Fehlende Repositories werden auf ihrem Default-Branch geklont.
-- Vorhandene Repositories werden auf dem aktuell ausgecheckten Branch mit
-  `git pull --ff-only` über dessen konfigurierten Upstream aktualisiert.
-- Uncommittete Änderungen und unversionierte, nicht ignorierte Dateien führen
-  zum Überspringen des Repositorys. Lokale Arbeit bleibt erhalten; es gibt kein
-  automatisches Stash oder Zurücksetzen.
-- Bei divergierender Historie, fehlendem Upstream, Detached HEAD oder anderen
-  Git-Fehlern wird der Fehler gemeldet und das nächste Repository bearbeitet.
-- Vorhandene Pfade ohne eigenen Git-Arbeitsbaum werden als Fehler gemeldet und
-  nicht überschrieben.
-
-Am Ende erscheinen die Anzahl geklonter und aktualisierter Repositories sowie
-die Anzahl und Namen übersprungener oder fehlgeschlagener Repositories.
-«Aktualisiert» umfasst auch erfolgreiche Pulls, bei denen bereits alles aktuell war.
-Bei fehlendem Git oder einem nicht erstellbaren bzw. nicht zugänglichen
-Zielverzeichnis bricht das Script sofort ab.
-
-| Exitcode | Bedeutung |
-| --- | --- |
-| `0` | Alle Repositories erfolgreich bearbeitet oder Hilfe angezeigt. |
-| `1` | Mindestens ein Repository übersprungen/fehlgeschlagen oder ein Fehler bei den Voraussetzungen. |
-| `2` | Ungültiger Aufruf, beispielsweise mehrere Argumente oder ein leerer Zielpfad. |
+Der externe Auftrag liefert ein normatives Dateimanifest und seine
+Checkliste unter `contracts/`. Ein JSON-Request unter
+`.work/requests/<phase>.json` benennt Repos, Basiscommits, Prompt, Reviewer,
+Ressourcengrenzen sowie Prüfprozesse und deren Abhängigkeiten. Das Gate
+bindet den Auftragsdigest, die exakten Quellstände, die neue Reviewersitzung,
+die ausgeführten Assertions und die Belegdateien. Details stehen im
+[Reviewformat](docs/review.md).

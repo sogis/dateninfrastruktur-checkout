@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "workspace": {
+    "id": "workspace",
+    "name": "dateninfrastruktur-workspace",
+    "remote": "https://github.com/sogis/dateninfrastruktur-checkout.git",
+    "branch": "main"
+  },
+  "repositories": [
+    {
+      "id": "stack",
+      "path": "dateninfrastruktur-dev-stack",
+      "remote": "https://github.com/sogis/dateninfrastruktur-dev-stack.git",
+      "branch": "main",
+      "profile": "core",
+      "responsibility": "Lokaler Composebetrieb und Integrationsprüfungen"
+    },
+    {
+      "id": "admin",
+      "path": "dateninfrastruktur-admin",
+      "remote": "https://github.com/sogis/dateninfrastruktur-admin.git",
+      "branch": "main",
+      "profile": "core",
+      "responsibility": "Katalogpflege, Autorisierung, Anlieferung und Managementschema"
+    },
+    {
+      "id": "sodata",
+      "path": "dateninfrastruktur-sodata",
+      "remote": "https://github.com/sogis/dateninfrastruktur-sodata.git",
+      "branch": "main",
+      "profile": "core",
+      "responsibility": "Öffentlicher Datenkatalog"
+    },
+    {
+      "id": "jenkins",
+      "path": "dateninfrastruktur-jenkins-dev",
+      "remote": "https://github.com/sogis/dateninfrastruktur-jenkins-dev.git",
+      "branch": "main",
+      "profile": "core",
+      "responsibility": "Jenkins- und GRETL-Laufzeit"
+    },
+    {
+      "id": "plugin",
+      "path": "dateninfrastruktur-jenkins-gretl-plugin",
+      "remote": "https://github.com/sogis/dateninfrastruktur-jenkins-gretl-plugin.git",
+      "branch": "main",
+      "profile": "core",
+      "responsibility": "Jenkins-Oberfläche und Ausführung der CSV-Anlieferung"
+    },
+    {
+      "id": "topics",
+      "path": "dateninfrastruktur-themenrepo",
+      "remote": "https://github.com/sogis/dateninfrastruktur-themenrepo.git",
+      "branch": "main",
+      "profile": "core",
+      "responsibility": "Themenverträge, CSV-Runner und eigenständige Ladejobs"
+    },
+    {
+      "id": "architecture",
+      "path": "dateninfrastruktur-architektur",
+      "remote": null,
+      "branch": "main",
+      "profile": "core",
+      "responsibility": "Technische Ist-Architektur und deren Prüfung"
+    },
+    {
+      "id": "diagram",
+      "path": "dateninfrastruktur-diagramm",
+      "remote": "https://github.com/sogis/dateninfrastruktur-diagramm.git",
+      "branch": "main",
+      "profile": "extended",
+      "responsibility": "Fachliche Übersicht"
+    },
+    {
+      "id": "workshop",
+      "path": "dateninfrastruktur-datenwerkstatt",
+      "remote": "https://github.com/sogis/dateninfrastruktur-datenwerkstatt.git",
+      "branch": "main",
+      "profile": "extended",
+      "responsibility": "Datenwerkstatt"
+    },
+    {
+      "id": "agentic-bi-demo-001",
+      "path": "dateninfrastruktur-agentic-bi-demo-001",
+      "remote": "https://github.com/sogis/dateninfrastruktur-agentic-bi-demo-001.git",
+      "branch": "main",
+      "profile": "extended",
+      "responsibility": "Eigenständige BI-Demo 001"
+    },
+    {
+      "id": "agentic-bi-demo-002",
+      "path": "dateninfrastruktur-agentic-bi-demo-002",
+      "remote": "https://github.com/sogis/dateninfrastruktur-agentic-bi-demo-002.git",
+      "branch": "main",
+      "profile": "extended",
+      "responsibility": "Eigenständige BI-Demo 002"
+    }
+  ]
+}

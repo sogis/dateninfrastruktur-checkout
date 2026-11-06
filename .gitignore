@@ -1,0 +1,15 @@
+/*
+!/.gitignore
+!/AGENTS.md
+!/LICENSE
+!/README.md
+!/repositories.json
+!/workspace
+!/tooling/
+!/tests/
+!/docs/
+!/.github/
+!/.opencode/
+.env
+.env.*
+**/__pycache__/
